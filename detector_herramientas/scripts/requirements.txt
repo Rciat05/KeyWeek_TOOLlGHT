@@ -1,0 +1,10 @@
+# IMPORTANTE: instala PyTorch con CUDA ANTES que este archivo
+# (ver README / instrucciones). Si no, pip puede instalar una
+# versión de PyTorch solo para CPU como dependencia de ultralytics.
+
+pyyaml>=6.0
+pillow>=10.0
+numpy>=1.24
+opencv-python>=4.8
+matplotlib>=3.7
+ultralytics>=8.3

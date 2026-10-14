@@ -1,0 +1,73 @@
+# ============================================================
+# config.yaml - Configuración central del proyecto
+# Usa barras normales (/) en las rutas, también en Windows.
+# Ejemplo: "C:/Users/TuUsuario/Datasets/martillos_pinzas"
+# ============================================================
+
+proyecto:
+  semilla: 42
+  directorio_resultados: "runs"      # se crea automáticamente
+  directorio_pesos: "weights"        # pesos preentrenados descargados
+
+# Clases finales del modelo (el orden define el ID 0, 1, 2, ...).
+# Si el dataset de la caja del pie de rey está bien anotado y quieres
+# detectarla por separado, descomenta "caja_pie_de_rey".
+clases:
+  - martillo
+  - pinzas
+  - cutter
+  - cinta_metrica
+  - guantes
+  - pistola_silicona
+  - pie_de_rey
+  - casco
+  # - caja_pie_de_rey
+preparacion:
+  directorio_salida: "datos_unificados"
+  ids_no_mapeados: "excluir_imagen"   # o "error"
+
+division:
+  train: 0.7
+  val: 0.2
+  test: 0.1
+  semilla: 42
+  umbral_hamming: 10
+  directorio_salida: "dataset_yolo"
+# Datasets originales (solo lectura: nunca se modifican).
+# Solo debes cambiar "ruta". Los nombres de clase dentro de cada
+# dataset se mapearán a las clases finales en el paso de preparación,
+# una vez inspeccionados.
+datasets:
+  - nombre: martillos_pinzas
+    ruta: "C:/Ever/Ciclo 4/detector_herramientas/datasets/dataset_martillos_pinzas"
+    mapa_clases: {0: martillo, 1: pinzas}
+  - nombre: cutter
+    ruta: "C:/Ever/Ciclo 4/detector_herramientas/datasets/dataset_cutter"
+    mapa_clases: {0: cutter, 1: cutter, 2: cutter}
+    maximo_imagenes: 400
+  - nombre: cinta_metrica
+    ruta: "C:/Ever/Ciclo 4/detector_herramientas/datasets/dataset_cinta_metrica"
+    mapa_clases: {0: cinta_metrica}
+  - nombre: guantes
+    ruta: "C:/Ever/Ciclo 4/detector_herramientas/datasets/dataset_guantes"
+    mapa_clases: {0: guantes, 1: guantes, 2: guantes, 3: guantes, 4: guantes, 5: guantes, 6: guantes, 7: guantes}
+  - nombre: pistola_silicona
+    ruta: "C:/Ever/Ciclo 4/detector_herramientas/datasets/dataset_pistola_silicona"
+    mapa_clases: {0: pistola_silicona}
+    maximo_imagenes: 400
+  - nombre: pie_de_rey
+    ruta: "C:/Ever/Ciclo 4/detector_herramientas/datasets/dataset_pie_de_rey"
+    mapa_clases: {0: pie_de_rey}        # PROVISIONAL (opción B): solo la franja de la escala
+    ids_no_mapeados: "ignorar_cajas"
+  - nombre: casco
+    ruta: "C:/Ever/Ciclo 4/detector_herramientas/datasets/dataset_casco"
+    mapa_clases: {0: casco}
+    maximo_imagenes: 400
+  - nombre: fondo_camara
+    ruta: "C:/Ever/Ciclo 4/detector_herramientas/datasets_propios/entrenamiento1/fondo"
+    fondo: true
+
+# Parámetros de la inspección
+inspeccion:
+  verificar_imagenes: true           # abre cada imagen para detectar archivos dañados
+  minimo_anotaciones_por_clase: 30   # por debajo se muestra una advertencia
