@@ -1,0 +1,26 @@
+# Archivos comprimidos pesados
+*.zip
+*.rar
+*.7z
+
+# Datasets y carpetas de entrenamiento
+detector_herramientas/datasets/
+detector_herramientas/runs/
+detector_herramientas/datos_unificados/
+
+# Entornos virtuales de Python
+.venv/
+venv/
+env/
+ENV/
+
+# Archivos de caché y compilación de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Configuración del editor y sistema
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini
